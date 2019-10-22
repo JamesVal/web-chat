@@ -1,4 +1,7 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, OnDestroy, Input } from '@angular/core';
+import { Subscription } from 'rxjs';
+
+import { MessagesService } from '../messages.service';
 
 @Component({
   selector: 'app-chat-room-template',
@@ -7,10 +10,26 @@ import { Component, OnInit, Input } from '@angular/core';
 })
 export class ChatRoomTemplateComponent implements OnInit {
   @Input() roomName: string;
+  messageSub: Subscription = new Subscription();
+  currentMessage: string = "";
+  msgList: string[] = [];
 
-  constructor() { }
-
-  ngOnInit() {
+  sendMessage(): void {
+    this.messagesService.sendMessage(this.currentMessage);
+    this.currentMessage = "";
   }
 
+  constructor(private messagesService: MessagesService) { }
+
+  ngOnInit() {
+    this.messagesService.changeRoom(this.roomName);
+    this.messageSub = this.messagesService.newMessage.subscribe((message) => {
+      this.msgList.push(message);
+      console.log("new message?");
+    });
+  }
+
+  ngOnDestroy() {
+    this.messageSub.unsubscribe();
+  }
 }

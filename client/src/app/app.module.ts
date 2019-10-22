@@ -6,6 +6,7 @@ import { AppRoutingModule } from './app-routing.module';
 
 import { AuthGuard } from './auth/auth.guard';
 import { UserManagerService } from './user-manager.service';
+import { MessagesService } from './messages.service';
 
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
@@ -24,7 +25,7 @@ import { ChatRoomTemplateComponent } from './chat-room-template/chat-room-templa
     FormsModule,
     AppRoutingModule
   ],
-  providers: [AuthGuard, UserManagerService],
+  providers: [AuthGuard, UserManagerService, MessagesService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -4,6 +4,7 @@ const path = require('path');
 const http = require('http');
 const cors = require('cors');
 const bodyParser = require('body-parser');
+const connections = require('./connections');
 
 // Get our API routes
 const api = require('./api');

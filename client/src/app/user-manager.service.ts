@@ -1,5 +1,7 @@
 import { Injectable, EventEmitter } from '@angular/core';
 
+import { MessagesService } from './messages.service';
+
 @Injectable({
   providedIn: 'root'
 })
@@ -12,6 +14,7 @@ export class UserManagerService {
     this.username = username;
     this.loggedIn = true;
     this.loginStatus.emit(true);
+    this.messagesService.connect();
   }
 
   logout(): void {
@@ -25,5 +28,7 @@ export class UserManagerService {
     this.login(username);
   }
 
-  constructor() { }
+  constructor(private messagesService: MessagesService) {
+
+  }
 }

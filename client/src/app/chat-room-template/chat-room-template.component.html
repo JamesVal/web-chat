@@ -1,9 +1,11 @@
 <div>Chat Room - {{roomName}}</div>
 <div class="messages-container">
   <div class="messages-header">Messages:</div>
-  <div class="messages-content"></div>
+  <div class="messages-content">
+    <div *ngFor="let msg of msgList">{{msg}}</div>
+  </div>
 </div>
-<div><input type="text" class="message-box"></div>
+<div><input type="text" class="message-box" [(ngModel)]="currentMessage" (keyup.enter)="sendMessage()"><button (click)="sendMessage()">Send</button></div>
 <div class="users-container">
   <div class="users-header">Users:</div>
   <div class="users-content"></div>
