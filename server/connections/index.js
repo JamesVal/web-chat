@@ -1,6 +1,16 @@
 /* Setup Sockets */
 const io = require('socket.io')(3001);
 
+// Check token
+io.use((socket, next) => {
+  let token = socket.handshake.query.token;
+  /* JJV DEBUG - NEED AN ACTUAL CHECK */
+  if (false) {
+    return next();
+  }
+  return next(new Error('authentication error'));
+});
+
 io.on("connection", (socket) => {
   console.log("connected:", socket.id);
 

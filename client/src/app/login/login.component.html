@@ -1,4 +1,4 @@
 <div>
-  <input type="text" [(ngModel)]="username" (keyup.enter)="login()">
-  <button (click)="login()">Login</button>
+  <input type="text" [(ngModel)]="username" (keyup.enter)="login()" [disabled]="waitingForResult">
+  <button (click)="login()" [disabled]="waitingForResult">Login</button>
 </div>
