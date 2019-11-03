@@ -17,14 +17,15 @@ export class LoginComponent implements OnInit {
   login(): void {
     if (!this.waitingForResult) {
       this.waitingForResult = true;
-      this.userManagerService.attemptLogin(this.username).subscribe((result) => {
-        console.log("login result:", result);
-        this.waitingForResult = false;
-        if (result) {
-          console.log("Logged In As: ", this.userManagerService.username);
-          //this.router.navigate(['/lounge']);
-        }
-      });
+      this.userManagerService.attemptLogin(this.username)
+        .subscribe((result) => {
+          console.log("login result:", result);
+          this.waitingForResult = false;
+          if (result) {
+            console.log("Logged In As: ", this.userManagerService.username);
+            //this.router.navigate(['/lounge']);
+          }
+        });
     }
   }
 

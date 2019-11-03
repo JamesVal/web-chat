@@ -23,9 +23,9 @@ export class ChatRoomTemplateComponent implements OnInit {
 
   ngOnInit() {
     this.messagesService.changeRoom(this.roomName);
-    this.messageSub = this.messagesService.newMessage.subscribe((message) => {
-      this.msgList.push(message);
-      console.log("new message?");
+    this.messageSub = this.messagesService.newMessage.subscribe((data) => {
+      this.msgList.push(data.username + ": " + data.message);
+      console.log("new message:", data);
     });
   }
 
